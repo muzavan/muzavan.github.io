@@ -1,0 +1,77 @@
+@font-face {
+	font-family: 'Adobe Gothic';
+	src: url(font/AdobeGothicStd-Bold.otf) format('opentype');
+}
+
+@font-face {
+	font-family: 'Gill Sans';
+	src: url(font/GILL_SANS_MT.ttf) format('truetype');
+}
+
+h2 {
+	font-family: 'Adobe Gothic',Arial;
+}
+
+
+#logo{
+	width: 30%;
+	margin:auto auto auto auto;
+}
+
+#logo-kecil{
+	width : 2%;
+	margin:auto auto auto auto;
+}
+
+#splashscreen{
+	width:60%;
+	margin: auto auto auto auto;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#background-labtek img{
+	width: 100%;
+	z-index: -100;
+	opacity: 0.4;
+	position: fixed;
+	top: 0px;
+	right: 0px;
+}
+
+#header{
+	font-family: 'Gill Sans',Arial;
+	width: 100%;
+	font-size: 30pt;
+	border-bottom: solid;
+	border-bottom-width: 2px;
+	border-bottom-color: #8C3041;
+}
+
+
+#title{
+	font-family: 'Gill Sans',Arial;
+	font-size: 30pt;
+	border-bottom: solid;
+	border-bottom-width: 2px;
+	border-bottom-color: #8C3041;
+	display: inline;
+}
+
+
+#navigasi{
+	font-family: 'Gill Sans',Arial;
+	font-size: 14pt;
+	text-align: right;
+	position : fixed;
+	top: 20px;
+}
+
+#footer{
+	width : 100%;
+	position: fixed;
+	left : 0px;
+	height: 40px;
+	bottom : 0px;
+	background-color: #600000; 
+}
