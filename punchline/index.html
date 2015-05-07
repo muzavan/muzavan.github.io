@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<script src=
+	"http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<body ng-app="myPunchlineApp" ng-controller="myPunchlineCtrl" class='home'>
+		<div class="container">
+		<div class="row">
+			<div class='{{_status}}'>{{message}}</div>
+			<h2>Create New Bit</h2>
+			<h4>Title:</h4>
+			<textarea ng-model="_title" rows="1" placeholder='Title'></textarea>
+			<h4>Setup:</h4>
+			<textarea ng-model="setup" rows="10" placeholder='Setup'></textarea>
+			<h4>Punchline:</h4>
+			<textarea ng-model="punchline" rows="10" placeholder='Punchline'></textarea>
+			<p>
+				<button ng-click="save()">Save</button>
+				<button ng-click="clear()">Clear</button>
+			</p>
+		</div>
+		</div>
+		<script src="myPunchlineApp.js"></script>
+	</body>
+</html>
