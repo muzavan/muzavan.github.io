@@ -1,0 +1,132 @@
+/*
+ * CREATED by : @muzavan
+ * CREATED in : http://github.com/muzavan/muzavan.github.io/rapat-bersama
+ * Can be Accessed via : http://muzavan.github.io/rapat-bersama
+ * TO DO : debug angular (why can't sync? , for now still using jQuery) , UI (esp. animation) 
+*/
+
+var myApp = angular.module("myRapatFireApp", ["firebase"]);
+var namaRuang;
+var ref,obj,boardSync,unwatch;
+var alreadyDefined = false;
+$('#room').hide();
+$('#create').hide();
+myApp.controller("myRapatFireController", ["$scope", "$firebaseArray", "$firebaseObject", "$interval",
+function($scope, $firebaseArray, $firebaseObject,$interval) {
+	  $scope._message = "";
+	  $scope._status = "";
+	  $scope.messages = "";
+	  $scope.msg = "";
+	  $scope.board = "";
+
+	  $scope.addMessage = function(){};
+	  $scope.boardSync = function(){};
+	  $scope.create = function(){
+    	var st = '{"'+namaRuang+'":{"chat" : 0, "board" :0}}';
+    	console.log(st);
+    	var data = JSON.parse(st);
+    	var myDataRef = new Firebase('http://muzavan-rapat.firebaseio.com');
+    	myDataRef.update(data);
+    	//$scope._message = "`"+ namaRuang + "` berhasil dibuat.";
+    	$('#status').attr('class', 'alert alert-success');
+		$('#status').text('Ruang Rapat `' + namaRuang + '` berhasil dibuat.');
+    	$("#create").hide();
+    };
+      var checker = $interval(function(){
+      		if(angular.isDefined(ref) && !alreadyDefined){
+
+      			definition = function(){
+      				$scope.messages = $firebaseArray(ref.child('chat'));
+      				obj = $firebaseObject(ref.child('board'));
+      				obj.$loaded().then(function(){
+      					console.log("loaded record:", obj.$value);
+      					$scope.board = obj.$value;
+      					console.log("scope board : ", $scope.board);
+      				});
+
+      				boardSync = function(){
+  						obj.$value = $scope.board;
+  						obj.$save();
+  						console.log("board : ",$scope.board);
+  					}
+
+  					$scope.boardSync = function(){
+  						boardSync();
+  					};
+
+  					unwatch = obj.$watch(function() {
+  						console.log("data changed!");
+  						$scope.board = obj.$value;
+  					});
+
+  					//ADD MESSAGE METHOD
+      				$scope.addMessage = function(e) {
+
+			        	//LISTEN FOR RETURN KEY
+        				if (e.keyCode === 13 && $scope.msg) {
+				          //ALLOW CUSTOM OR ANONYMOUS USER NAMES
+				          var name = $scope.name || "anonymous";
+
+				          //ADD TO FIREBASE
+				          $scope.messages.$add({
+				          	name: name,
+				          	text: $scope.msg
+				          });
+
+				          //RESET MESSAGE
+				          $scope.msg = "";
+				      	}
+					}
+      			}
+
+      			definition();
+      			alreadyDefined = true;
+      		}
+      		else{
+      			return;
+      		}
+      },100);
+  }
+
+]);
+
+
+function search(){
+	console.log("search() invoke");
+	if($('#namaRuang').val() != ""){
+		console.log("namaRuang not null");
+		namaRuang = $('#namaRuang').val();
+		searchFB(namaRuang);
+	}
+}
+     
+function searchSuccess(){
+	$('#status').addClass('alert alert-success');
+	$('#status').text('Ruang Rapat `' + namaRuang + '` berhasil ditemukan.');
+	$('#door').slideUp(300).hide().delay(800);
+	$('#room').show();
+}
+
+function searchFail(){
+	$('#status').addClass('alert alert-warning');
+	$('#status').text('Ruang Rapat `' + namaRuang + '` tidak ditemukan.');
+	$('#status').fadeIn(700);
+	$("#create").fadeIn(900);
+}
+
+function searchFB(_namaRuang){
+	var tempRef = new Firebase('https://muzavan-rapat.firebaseio.com/');
+	tempRef = tempRef.child(_namaRuang);
+	tempRef.once('value',function(snapshot){
+		console.log("snapshot : "+snapshot);
+		if(snapshot.val() != null){
+			searchSuccess();
+			ref = tempRef;
+		}
+		else{
+			searchFail();
+		}
+	});
+}
+
+	 

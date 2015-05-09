@@ -1,0 +1,54 @@
+<!doctype html>
+<html ng-app="myRapatFireApp">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	</head>
+	<body ng-controller="myRapatFireController">
+		<div id="door" class="container">
+			<div class="row">
+				<h2>Rapat Bersama</h2>
+				<div id='status' class='{{_status}}'>{{_message}}</div>
+				<div class="form-group">
+					<label>Nama Ruang</label>
+					<input type='text' class='form-control col-md-4' id='namaRuang' ng-model="namaRuang" placeholder='Nama Ruangan yang akan Anda Gunakan' required>
+				</div>
+				<div class="form-group">
+					<button onclick="search()" class="btn btn-primary form-control">Masuk ke Ruang Rapat</button>
+				</div>
+				<div class="form-group">
+					<button id='create' ng-click='create()' class="btn btn-success">Buat Ruang Baru</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="room" class="container">
+			<!-- CHAT MARKUP -->
+			<div id="chat" class="col-md-4">
+				<header>Firebase Chat Demo</header>
+				
+				<ul id="example-messages" class="example-chat-messages">
+					<li ng-repeat="msg in messages">
+						<strong class="example-chat-username">{{ msg.name }}</strong>
+						{{ msg.text }}
+					</li>
+				</ul>
+
+				<div class="form-inline" role='form'>
+					<div class="form-group"><input ng-model="name" type="text" id="nameInput" class='form-control' placeholder="enter a username..."></div>
+					<div class="form-group"><input ng-model="msg" ng-keydown="addMessage($event)" type="text" id="messageInput" class='form-control'  placeholder="Type a message..."></div>
+				</div>		
+			</div>
+
+			<div id="board" class="col-md-8">
+				<input ng-model="board" type="textarea" id="_boardInput" class='form-control'  ng-change='boardSync()' placeholder="This is where you put your notes">
+			</div>
+		</div>
+		<script src="myRapatFire.js">
+		</script>
+		</body>
+</html>
