@@ -1,0 +1,50 @@
+body{
+	background-color: #889ABF;
+	font-family: 'Open Sans',serif;
+	font-size: 14pt;
+}
+
+h1{
+	font-family: 'Marcellus SC', serif;
+	font-size: 60pt;
+}
+
+.btn{
+	text-transform: uppercase;
+}
+
+ul li:nth-child(odd) {
+   background-color: #BFCAD9;
+}
+
+ul li:nth-child(even) {
+   background-color: #F2F2F2;
+}
+
+.chats{
+	max-height: 150px;
+	overflow-y : auto;
+	font-size: 11pt;
+	padding-bottom: 6px;
+}
+
+ul{
+	list-style-type: none;
+	padding : 0;
+	margin:0;
+}
+#chat .form-group{
+	margin-top: 10px;
+}
+.notes{
+	font-size: 9pt;
+}
+
+textarea{
+	resize:none;
+}
+
+h1.h-room{
+	font-family: 'Alef', sans-serif;
+	font-size: 57pt;
+}

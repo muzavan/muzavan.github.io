@@ -21,7 +21,15 @@ function($scope, $firebaseArray, $firebaseObject,$interval) {
 	  $scope.msg = "";
 	  $scope.board = "";
 
+	  $scope.fokus = function(){
+	  	$('#create').slideUp(400);
+	  }
 
+	  $scope.search = function(e){
+	  	if(e.keyCode === 13 && $('#namaRuang').val()){
+	  		search();
+	  	}
+	  }
 	  $scope.addMessage = function(){};
 	  $scope.boardSync = function(){};
 	  $scope.create = function(){
@@ -32,7 +40,7 @@ function($scope, $firebaseArray, $firebaseObject,$interval) {
     	myDataRef.update(data);
     	//$scope._message = "`"+ namaRuang + "` berhasil dibuat.";
     	$('#status').attr('class', 'alert alert-success');
-		$('#status').text('Ruang Rapat `' + namaRuang + '` berhasil dibuat.');
+		$('#status').text('`' + namaRuang + '` has been successfully created.');
     	$("#create").hide();
     };
       var checker = $interval(function(){ //interval function, to redefine function and variables based on 'ref'
@@ -78,8 +86,11 @@ function($scope, $firebaseArray, $firebaseObject,$interval) {
 
 				          //RESET MESSAGE
 				          $scope.msg = "";
+				          $('#chats').scrollTop = $('#chats').height();
 				      	}
 					}
+
+					$scope.namaRuang = namaRuang;
       			}
 
       			definition();
@@ -107,14 +118,14 @@ function search(){
      
 function searchSuccess(){
 	$('#status').addClass('alert alert-success');
-	$('#status').text('Ruang Rapat `' + namaRuang + '` berhasil ditemukan.');
-	$('#door').slideUp(300).hide().delay(800);
+	$('#status').text('Welcome to `' + namaRuang + '`!');
+	$('#door').delay(2000).slideUp(2000);
 	$('#room').show();
 }
 
 function searchFail(){
 	$('#status').addClass('alert alert-warning');
-	$('#status').text('Ruang Rapat `' + namaRuang + '` tidak ditemukan.');
+	$('#status').text('`' + namaRuang + '` can\'t be found.');
 	$('#status').fadeIn(700);
 	$("#create").fadeIn(900);
 }
