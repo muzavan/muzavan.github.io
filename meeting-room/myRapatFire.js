@@ -8,7 +8,7 @@
 
 var myApp = angular.module("myRapatFireApp", ["firebase"]);
 var namaRuang;
-var ref,obj,boardSync,unwatch;
+var ref,obj,boardSync,unwatch, unchat, editor;
 var alreadyDefined = false;
 $('#room').hide();
 $('#create').hide();
@@ -56,19 +56,17 @@ function($scope, $firebaseArray, $firebaseObject,$interval) {
       				});
 
       				boardSync = function(){
+  						//obj.$value = data;
   						obj.$value = $scope.board;
   						obj.$save();
-  						console.log("board : ",$scope.board);
+  						//console.log("board : ",$scope.board);
   					}
 
+  					
   					$scope.boardSync = function(){
   						boardSync();
   					};
 
-  					unwatch = obj.$watch(function() {
-  						console.log("data changed!");
-  						$scope.board = obj.$value;
-  					});
 
   					//ADD MESSAGE METHOD
       				$scope.addMessage = function(e) {
@@ -86,12 +84,22 @@ function($scope, $firebaseArray, $firebaseObject,$interval) {
 
 				          //RESET MESSAGE
 				          $scope.msg = "";
-				          $('#chats').scrollTop = $('#chats').height();
 				      	}
 					}
 
+					unchat = $scope.messages.$watch(function(){
+						console.log("watch messages");
+				         $('#chats').scrollTop(800);
+					});
+
 					$scope.namaRuang = namaRuang;
-      			}
+
+
+  					unwatch = obj.$watch(function() {
+  						console.log("data changed!");
+  						$scope.board = obj.$value;
+  					});
+      			};
 
       			definition();
       			alreadyDefined = true;
@@ -119,15 +127,16 @@ function search(){
 function searchSuccess(){
 	$('#status').addClass('alert alert-success');
 	$('#status').text('Welcome to `' + namaRuang + '`!');
-	$('#door').delay(2000).slideUp(2000);
-	$('#room').show();
+	$('#status').fadeIn(400);
+	$('#door').delay(1000).slideUp(1200);
+	$('#room').show(1200);
 }
 
 function searchFail(){
 	$('#status').addClass('alert alert-warning');
 	$('#status').text('`' + namaRuang + '` can\'t be found.');
-	$('#status').fadeIn(700);
-	$("#create").fadeIn(900);
+	$('#status').fadeIn(400);
+	$("#create").fadeIn(400);
 }
 
 function searchFB(_namaRuang){
