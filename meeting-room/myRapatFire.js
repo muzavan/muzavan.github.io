@@ -1,8 +1,9 @@
 /*
  * CREATED by : @muzavan
- * CREATED in : http://github.com/muzavan/muzavan.github.io/rapat-bersama
- * Can be Accessed via : http://muzavan.github.io/rapat-bersama
- * TO DO : debug angular (why can't sync? , for now still using jQuery) , UI (esp. animation) 
+ * CREATED in : http://github.com/muzavan/muzavan.github.io/meeting-room
+ * Can be Accessed via : http://muzavan.github.io/meeting-room
+ * TO DO : UI (esp. animation)
+ * this is developed based on MeetingWords (http://meetingwords.com) idea. This apps is pure for experiment and exploration. But you can still use it :)  
 */
 
 var myApp = angular.module("myRapatFireApp", ["firebase"]);
@@ -13,11 +14,13 @@ $('#room').hide();
 $('#create').hide();
 myApp.controller("myRapatFireController", ["$scope", "$firebaseArray", "$firebaseObject", "$interval",
 function($scope, $firebaseArray, $firebaseObject,$interval) {
+	/* ng-init */
 	  $scope._message = "";
 	  $scope._status = "";
 	  $scope.messages = "";
 	  $scope.msg = "";
 	  $scope.board = "";
+
 
 	  $scope.addMessage = function(){};
 	  $scope.boardSync = function(){};
@@ -32,9 +35,9 @@ function($scope, $firebaseArray, $firebaseObject,$interval) {
 		$('#status').text('Ruang Rapat `' + namaRuang + '` berhasil dibuat.');
     	$("#create").hide();
     };
-      var checker = $interval(function(){
+      var checker = $interval(function(){ //interval function, to redefine function and variables based on 'ref'
       		if(angular.isDefined(ref) && !alreadyDefined){
-
+      			//redefiniton of function and variables (ref,obj,boardSync,unwatch), it has to be done due to changed 'ref' (reference to firebase)
       			definition = function(){
       				$scope.messages = $firebaseArray(ref.child('chat'));
       				obj = $firebaseObject(ref.child('board'));
@@ -81,6 +84,8 @@ function($scope, $firebaseArray, $firebaseObject,$interval) {
 
       			definition();
       			alreadyDefined = true;
+      			$interval.cancel(checker); //canceling the 'checker' promise (read angular.$interval doc for specific information), since functions and variables aren't needed to be redefined 
+      			console.log('Checker has been canceled');
       		}
       		else{
       			return;
