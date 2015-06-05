@@ -33,7 +33,7 @@ function($scope, $firebaseArray, $firebaseObject,$interval) {
 	  $scope.addMessage = function(){};
 	  $scope.boardSync = function(){};
 	  $scope.create = function(){
-    	var st = '{"'+namaRuang+'":{"chat" : 0, "board" :0}}';
+    	var st = '{"'+namaRuang+'":{"chat" : 0, "board" :"This is your board. Write anything"}}';
     	console.log(st);
     	var data = JSON.parse(st);
     	var myDataRef = new Firebase('http://muzavan-rapat.firebaseio.com');

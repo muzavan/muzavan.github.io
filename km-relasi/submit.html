@@ -1,0 +1,45 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="submit.js"></script>
+    <div class="container">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <h1>Tambah Relasi Komunitas Masyarakat</h1>
+        <form role="form">
+          <div class="form-group">
+            <label for="nama">Nama Instansi/Komunitas:</label>
+            <input type="text" class="form-control" id="nama" placeholder='Nama komunitas' required>
+          </div>
+          <div class="form-group">
+            <label for="narahubung">Narahubung:</label>
+            <input type="text" class="form-control" id="nama_narahubung" placeholder='Nama narahubung' required>
+            <input type="text" class="form-control" style='margin-top : 5px' id="kontak_narahubung" placeholder='No. Telp / email narahubung' required>
+          </div>
+          <span class="form-group">
+            <label for="narahubung">Latitude:</label>
+            <input type="text" class="form-control" id="latitude" placeholder='Koordinat latitude lokasi komunitas (bisa dicari pada peta di bawah)' required>
+          </span>
+          <span class="form-group">
+            <label for="narahubung">Longitude:</label>
+            <input type="text" class="form-control" id="longitude" placeholder='Koordinat longitude lokasi komunitas (bisa dicari pada peta di bawah' required>
+          </span>
+          <div class='container' id='map' style='width:100%;height:300px'>
+          </div>
+          <div class="form-group">
+            <label for="keterangan">Keterangan:</label>
+            <input type="textarea" class="form-control" id="keterangan" placeholder='Penjelasan/ringkasan mengenai komunitas' required>
+          </div>
+          <button type="submit" class="btn btn-default">Simpan</button>
+        </form>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </body>
+</html>
