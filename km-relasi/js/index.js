@@ -39,11 +39,6 @@ function visualizeData(){
   var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
   var markerManager = new MarkerManager(map);
   var myCenter=new google.maps.LatLng(-6.891167, 107.610611);
-  var oMarker = new google.maps.Marker({
-    position : myCenter,
-    icon : "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
-    map : map,
-  });
 
   /*
   for(var i in arrayData){
@@ -73,10 +68,17 @@ function visualizeData(){
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(arrayData[i].latitude,arrayData[i].longitude),
         icon: iconURL,
-        title : arrayData[i].nama+"\nNarahubung : "+arrayData[i].kontak_narahubung+" ("+arrayData[i].nama_narahubung+")\n"+arrayData[i].keterangan,
+        content : "<div style='font-size:10pt;'><b>"+arrayData[i].nama+"</b>"+"<br/>Narahubung : "+arrayData[i].kontak_narahubung+" ("+arrayData[i].nama_narahubung+")<br/>"+arrayData[i].keterangan+"</div>",
+      });
+      google.maps.event.addListener(marker, 'click', function() {
+        var infowindow = new google.maps.InfoWindow({});
+        infowindow.setContent(this.content);
+        infowindow.open(map, this);
       });
       markerManager.addMarker(marker,0);
     }
     markerManager.refresh();
   });
+
+
 }
