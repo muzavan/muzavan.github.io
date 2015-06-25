@@ -6,7 +6,7 @@ $(document).ready(function() {
 		$('.loader').hide();
 		$('#cari').bind('keypress', function(e) {
 			if (e.keyCode == 13) {
-				var x = kamus[$('#cari').val()]
+				var x = kamus[$('#cari').val().toLowerCase()]
 				if (x == undefined)
 					x = 'Arti kata tidak ditemukan';
 				$('#arti').text(x);
@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 		$('button').bind('click', function(e) {
 			if (e.keyCode == 13) {
-				var x = kamus[$('#cari').val()]
+				var x = kamus[$('#cari').val().toLowerCase()]
 				if (x == undefined)
 					x = 'Arti kata tidak ditemukan';
 				$('#arti').text(x);
