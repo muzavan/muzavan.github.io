@@ -4,9 +4,3 @@ Meeting Room is built based on Meetingwords (http://meetingwords.com) idea. This
 
 #Tools and Lib
 Developed using Angular-Fire, jQuery, CKEditor(http://ckeditor.com/download), and Bootstrap.
-
-#Update V 2.0 (July, 1st 2015)
-Now we support auto-visit via link!
-In previous version, you always need to enter your room via form, but now you can access it via /?r=your-room-name
-We also support share link now.
-Tell your friends!

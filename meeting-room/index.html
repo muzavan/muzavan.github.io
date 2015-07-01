@@ -14,6 +14,25 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body ng-controller="myRapatFireController">
+      <div id='loader' style='text-align : center;'>
+        <div class="row">
+          <h1>&nbsp</h1>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+
+          </div>
+          <div class="col-md-4 well">
+            In a moment...
+            <p>
+              <img src='ajax-loader.gif' style='width: 20px;'/>
+            </p>
+          </div>
+          <div class="col-md-4">
+
+          </div>
+        </div>
+      </div>
         <div id="door" class="container">
             <h1>&nbsp;</h1>
             <div class="row">
@@ -36,6 +55,9 @@
                             <div class="form-group notes">
                                 *room's name is case-sensitive
                             </div>
+                            <div id='loader-well' style='text-align : center;'>
+                              <img src='ajax-loader.gif' style='width: 20px;'/>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -44,13 +66,12 @@
         </div>
         <div id="room" class="container">
             <div class="row">
-                <h1 class='h-room'> Current Room : {{namaRuang}}</h1>
+                <span><h3>&nbsp</h3></span>
             </div>
             <div class="row">
                 <div id="board" class="col-md-8">
-                    
                     <div class="well">
-                        <label>BOARD</label>
+                        <label style="width:100%;"><span class='col-md-6' style='text-align:left;'> ROOM : {{namaRuang}} </span><span class='col-md-6' style="text-align:right;"><button type="button" class='btn btn-success' name="button" onclick="copyToClipboard()">Share Link</button></span></label>
                         <textarea ng-model="board" type="textarea" id="_boardInput" class='form-control' rows='13' ng-change='boardSync()' placeholder="This is where you put your notes"> </textarea>
                     </div>
                 </div>
