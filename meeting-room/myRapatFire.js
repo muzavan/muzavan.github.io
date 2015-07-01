@@ -141,6 +141,7 @@ function searchFromURL(){
 		$('#loader').show();
 		$('#door').hide();
 		namaRuang = getRoomURLParam();
+		$('#namaRuang').val(namaRuang)
 		searchFB(getRoomURLParam());
 	}
 }
