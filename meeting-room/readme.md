@@ -8,7 +8,11 @@ Developed using Angular-Fire, jQuery, CKEditor(http://ckeditor.com/download), an
 #Update V 2.0 (July, 1st 2015)
 Now we support auto-visit via link!
 In previous version, you always need to enter your room via form, but now you can access it via /?r=your-room-name
+
 ![](https://muzavan.files.wordpress.com/2015/07/screenshot-from-2015-07-01-160052.png?w=620&h=355)
+
 We also support share link now.
+
 ![](https://muzavan.files.wordpress.com/2015/07/screenshot-from-2015-07-01-160209.png?w=620&h=377)
+
 Tell your friends!
