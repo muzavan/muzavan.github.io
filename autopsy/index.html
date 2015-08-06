@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Autopsy.IO Fork</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<style>
+body{
+	background-color: #FCFCFC;
+}
+hr{
+	height : 3px;
+	background-color: #CBE1DF;
+}
+</style>
+</head>
+<body>
+<div class="col-md-4"></div>
+<div class="col-md-4">
+	<center><h1><a href='http://autopsy.io'>Autopsy.IO - Fork</a></h1>
+<h5>This is another view for <a href="http://autopsy.io">Autopsy.IO</a></h5><h5>Original work by :  <a href="http://twitter.com/NiralSJP">@NiralSJP</a></h5></center>
+
+<hr/>
+
+<div id="content">
+	
+</div>
+
+</div>
+<div class="col-md-4"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+	var autopsyData;
+
+	var a = $.getJSON("http://autopsy.hol.es/api.php",function(data){
+		autopsyData = data;
+	});
+
+	a.then(function(){
+		for(var i in autopsyData){
+			var appended = "<b>Autopsy Date: </b>";
+			appended+=autopsyData[i].date;
+			appended+="<br/><b>Startup: </b>";
+			appended+=autopsyData[i].name;
+			appended+="<br/><b>Founder: </b>";
+			appended+=autopsyData[i].founder;
+			appended+="<br/><b>Idea: </b>";
+			appended+=autopsyData[i].idea;
+			appended+="<br/><b>Reason for Failure: </b>";
+			appended+=autopsyData[i].reason;
+			appended+="<br/><b>Full Story: </b>";
+			appended+=autopsyData[i].story;
+			appended+="<hr/>"
+			$('#content').append(appended);
+		}
+	});
+
+</script>
+</body>
+</html>
