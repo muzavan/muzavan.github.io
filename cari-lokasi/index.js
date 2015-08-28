@@ -19,6 +19,10 @@ function initialize() {
         google.maps.event.addListener(map,'click',function(e) {
             var pos= new google.maps.LatLng(e.latLng.k,e.latLng.D);
             newMarker.setPosition(pos);
+            infowindow.setContent("<b>Lat : </b> "+ newMarker.position.k + "<br/><b>Lng : </b> "+ newMarker.position.D);
+        });
+        google.maps.event.addListener(marker,'click',function(e) {
+            infowindow.open(map,newMarker);
         });
 }
 google.maps.event.addDomListener(window, 'load', initialize);
